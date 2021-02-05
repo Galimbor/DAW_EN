@@ -27,7 +27,7 @@ class RegistrationController extends AbstractController
         if($this->getUser())
         {
             $this->addFlash('error', 'You are already signed in.');
-            return $this->redirectToRoute('elearn');
+            return $this->redirectToRoute('courses');
         }
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -52,7 +52,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('elearn');
         }
 
-     $navbar = $navbarHelper->retrieveCoursesLoggedOut();
+     $navbar = $navbarHelper->retrieveRegisterNav();
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(), 'navbar' => $navbar

@@ -56,11 +56,11 @@
                             </div>
                             <nav class="main_nav_contaner ml-auto">
                                 <ul class="main_nav">
-                                    <li><a {{ navbar.menu1link|raw }}>{{ navbar.menu1 }}</a></li>
-                                    <li ><a {{ navbar.menu2link|raw }}>{{ navbar.menu2 }}</a></li>
-                                    <li ><a {{ navbar.menu3link|raw }}>{{ navbar.menu3 }}</a></li>
-                                    <li class=""><a {{ navbar.menu4link|raw }}>{{ navbar.menu4 }}</a></li>
-                                    <li class=""><a {{ navbar.menu5link|raw }}>{{ navbar.menu5 }}</a></li>
+                                    <li class="{{ navbar.active1 }}" ><a {{ navbar.menu1link|raw }}>{{ navbar.menu1 }}</a></li>
+                                    <li class="{{ navbar.active2 }}" ><a {{ navbar.menu2link|raw }}>{{ navbar.menu2 }}</a></li>
+                                    <li class="{{ navbar.active3 }} "><a {{ navbar.menu3link|raw }}>{{ navbar.menu3 }}</a></li>
+                                    <li class="{{ navbar.active4 }} "><a {{ navbar.menu4link|raw }}>{{ navbar.menu4 }}</a></li>
+                                    <li class="{{ navbar.active5 }} "><a {{ navbar.menu5link|raw }}>{{ navbar.menu5 }}</a></li>
 
                                     {% block logged_user %} {% endblock %}
                                 </ul>

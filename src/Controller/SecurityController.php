@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
         if($this->getUser())
         {
             $this->addFlash('error', 'You are already signed in.');
-            return $this->redirectToRoute('elearn');
+            return $this->redirectToRoute('courses');
         }
 
 //        $chosenProducts = $cart->retrieveCartItems($session,$productsRepository);
@@ -32,7 +32,7 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-        $navbar = $navbarHelper->retrieveCoursesLoggedOut();
+        $navbar = $navbarHelper->retrieveLoginNav();
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error,'navbar' => $navbar,]);
     }
 

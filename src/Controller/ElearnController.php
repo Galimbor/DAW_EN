@@ -50,10 +50,10 @@ class ElearnController extends AbstractController
 
         if (!$this->getUser()) {
             //The user isn't logged in
-            $navbar = $navbarHelper->retrieveCoursesLoggedOut();
+            $navbar = $navbarHelper->retrieveCoursesLoggedOutNav();
         } else {
             //The user is logged in
-            $navbar = $navbarHelper->retrieveCoursesLoggedIn();
+            $navbar = $navbarHelper->retrieveCoursesLoggedInNav();
         }
 
         $courses = $coursesRepository->findAll();
@@ -107,9 +107,9 @@ class ElearnController extends AbstractController
         if (!$this->getUser()) {
             //The user isn't logged in
             $this->addFlash('error', 'You need to be signed in.');
-            return $this->redirectToRoute('elearn');
+            return $this->redirectToRoute('courses');
         } else {
-            $navbar = $navbarHelper->retrieveCoursesLoggedIn();
+            $navbar = $navbarHelper->retrieveMyOrdersNav();
             $enrolls = $enrollsRepository->findBy(array('user' => $this->getUser()->getId()));
 
             return $this->render('elearn/myCourses.html.twig', [

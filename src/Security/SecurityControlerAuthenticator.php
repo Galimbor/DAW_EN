@@ -99,7 +99,7 @@ class SecurityControlerAuthenticator extends AbstractFormLoginAuthenticator impl
         $name = $token->getUser()->getName();
         $request->getSession()->getFlashBag()->add('success', 'Welcome '.$name.'. You have successfully logged in.');
 
-        return new RedirectResponse($this->urlGenerator->generate('elearn'));
+        return new RedirectResponse($this->urlGenerator->generate('courses'));
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
 //        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }

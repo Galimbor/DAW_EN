@@ -67,7 +67,7 @@
                 <div class="course_image"><img src="{{ asset('images/' ~course.image) }}" alt=""></div>
                 <div class="course_body">
                     <div class="course_header d-flex flex-row align-items-center justify-content-start">
-                        <div class="course_tag"><a href="#">Featured</a></div>
+                        <div class="course_tag"><a href="#">{{ course.cat.name }}</a></div>
                         <div class="course_price ml-auto">Price: <span>${{ course.price }}</span></div>
                     </div>
 

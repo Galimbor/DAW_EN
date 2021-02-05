@@ -19,6 +19,7 @@ security:
                 authenticators:
                     - App\Security\SecurityControlerAuthenticator
             logout:
+                invalidate_session: false
                 path: app_logout
                 success_handler: authentication_handler
                 # where to redirect after logout

@@ -27,6 +27,7 @@ class AuthenticationHandler extends AbstractController implements  LogoutSuccess
 
 //        return new RedirectResponse($request->getBaseUrl() );
 //       return new RedirectResponse($referer);
-        return $this->redirectToRoute('elearn');
+
+        return $this->redirectToRoute('courses');
     }
 }
