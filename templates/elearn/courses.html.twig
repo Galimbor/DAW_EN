@@ -17,6 +17,7 @@
     <link href="{{ asset('plugins/video-js/video-js.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/courses.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/courses_responsive.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/personal.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -61,7 +62,7 @@
 
     {% for course in courses %}
         <!-- Course -->
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6 divbutton ">
             <div class="course">
                 <div class="course_image"><img src="{{ asset('images/' ~course.image) }}" alt=""></div>
                 <div class="course_body">
@@ -69,17 +70,20 @@
                         <div class="course_tag"><a href="#">Featured</a></div>
                         <div class="course_price ml-auto">Price: <span>${{ course.price }}</span></div>
                     </div>
-                    <div class="course_title"><h3><a href="#">{{ course.name }}</a></h3></div>
-                    <div class="course_text">{{ course.description }}</div>
+
+
+
+                    <div class="course_title course_info"><h3><a href="#">{{ course.name }}</a></h3></div>
+                    <div class="course_text course_info">{{ course.description }}</div>
+
+                    <div class="text-center mt-3"><div class="button " style="display: none;"><a href="{{ path('enroll', {id : course.id}) }} ">Enroll</a></div></div>
+
                     <div class="course_footer d-flex align-items-center justify-content-start">
                         <div class="course_author_image"><img src="{{ asset('images/' ~course.teacher.image) }}" ></div>
                         <div class="course_author_name">By <a href="#">{{ course.teacher.name }}</a></div>
                         <div class="course_sales ml-auto"><span>{{ course.sales }}</span> Sales</div>
                     </div>
                     <br>
-                    {% if app.user %}
-                    <div class="text-center "><div class="button"><a href="{{ path('enroll', {id : course.id}) }} ">Enroll</a></div></div>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -93,6 +97,7 @@
 
 
     {% block javascripts %}
+        <script src="{{ asset('js/mouseover.js') }}"></script>
         <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
         <script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
         <script src="{{ asset('styles/bootstrap4/bootstrap.min.js') }}"></script>
