@@ -1,0 +1,86 @@
+
+{% extends 'base2.html.twig' %}
+
+{% block title %}My Login{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/bootstrap4/bootstrap.min.css') }}">
+    <link href="{{ asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('plugins/video-js/video-js.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_responsive.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="home">
+        <!-- Background image artist https://unsplash.com/@thepootphotographer -->
+        <div class="home_background parallax_background parallax-window" data-parallax="scroll" data-image-src="{{ asset('images/contact.jpg') }}" data-speed="0.8"></div>
+        <div class="home_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="home_content text-center">
+                            <div class="home_title">Login</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if error %}
+        <div class=" m-3 text-center w-75 mx-auto alert-danger py-2">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <div class="contact">
+        <div class="container-fluid">
+            <div class="row row-xl-eq-height">
+                <div class="col-xl-3">
+                </div>
+                <!-- Contact Content -->
+                <div class="col-xl-6">
+                    <div class="contact_content">
+                        <div class="contact_form_container">
+                            <form action="#" id="contact_form" class="contact_form" method="post">
+                                <input type="hidden" name="_csrf_token"
+                                       value="{{ csrf_token('authenticate') }}">
+                                <div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label for="email">Email:</label>
+                                            <input type="email" name="email" class="contact_input" required="required" value="{{ last_username }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 contact_name_col">
+                                        <label for="password">Password:</label>
+                                        <input type="password" name="password" class="contact_input" required="required">
+                                    </div>
+                                </div>
+                                <input type="submit" class="contact_button" value="Login">
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+<script src="{{ asset('styles/bootstrap4/bootstrap.min.js') }}"></script>
+<script src="{{ asset('plugins/easing/easing.js') }}"></script>
+<script src="{{ asset('plugins/parallax-js-master/parallax.min.js') }}"></script>
+<script src="{{ asset('https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA') }}"></script>
+<script src="{{ asset('js/contact.js') }}"></script>
+{%  endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}My Register{% endblock %}
+
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/bootstrap4/bootstrap.min.css') }}">
+    <link href="{{ asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('plugins/video-js/video-js.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/contact_responsive.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+    <!-- Home -->
+
+    <div class="home">
+        <!-- Background image artist https://unsplash.com/@thepootphotographer -->
+        <div class="home_background parallax_background parallax-window" data-parallax="scroll" data-image-src="{{ asset('images/contact.jpg') }}" data-speed="0.8"></div>
+        <div class="home_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="home_content text-center">
+                            <div class="home_title">Register</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+
+    <div class="contact">
+        <div class="container-fluid">
+            <div class="row row-xl-eq-height">
+                <div class="col-xl-3">
+                </div>
+                <!-- Contact Content -->
+                <div class="col-xl-6">
+                    <div class="contact_content">
+                        <div class="contact_form_container">
+                            <div action="#" id="contact_form" class="contact_form">
+                                {{ form_start(registrationForm) }}
+                                <div>
+                                    <div class="row">
+                                        <div class="col-lg-6 contact_name_col">
+                                            {{ form_row(registrationForm.name,{'attr': {'class': 'contact_input'}}) }}
+                                        </div>
+                                        <div class="col-lg-6">
+                                            {{ form_row(registrationForm.email,{'attr': {'class': 'contact_input'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 contact_name_col">
+                                        {{ form_row(registrationForm.plainPassword.first,{'attr': {'class': 'contact_input'}}) }}
+                                    </div>
+                                    <div class="col-lg-6">
+                                        {{ form_row(registrationForm.plainPassword.second,{'attr': {'class': 'contact_input'}}) }}
+                                    </div>
+                                </div>
+                                <input type="submit" class="contact_button mt-5" value="Register">
+                                {{ form_end(registrationForm) }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block javascripts %}
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+<script src="{{ asset('styles/bootstrap4/bootstrap.min.js') }}"></script>
+<script src="{{ asset('plugins/easing/easing.js') }}"></script>
+<script src="{{ asset('plugins/parallax-js-master/parallax.min.js') }}"></script>
+<script src="{{ asset('https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA') }}"></script>
+<script src="{{ asset('js/contact.js') }}"></script>
+{% endblock %}
