@@ -1,0 +1,104 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Courses{% endblock %}
+
+{% block logged_user %}
+    {% if app.user %}
+        <li class="">
+            <p class=""> Welcome <span class="font_weight_b">{{ app.user.name}} !</span></p>
+        </li>
+    {% endif %}
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/bootstrap4/bootstrap.min.css') }}">
+    <link href="{{ asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('plugins/video-js/video-js.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/courses.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/courses_responsive.css') }}">
+{% endblock %}
+
+{% block body %}
+
+
+
+
+
+        <!-- News -->
+
+    <div class="courses">
+        <div class="container">
+
+
+
+            <div class="row courses_row">
+
+
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="section_title text-center"><h2>Choose your new course!</h2></div>
+                    <br>
+                </div>
+
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success w-75 alert-dismissible fade show mx-auto text-center mt-3 "
+                         role="alert">{{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger w-75 alert-dismissible fade show mx-auto text-center mt-3 "
+                         role="alert">{{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+
+
+    {% for course in courses %}
+        <!-- Course -->
+        <div class="col-lg-4 col-md-6">
+            <div class="course">
+                <div class="course_image"><img src="{{ asset('images/' ~course.image) }}" alt=""></div>
+                <div class="course_body">
+                    <div class="course_header d-flex flex-row align-items-center justify-content-start">
+                        <div class="course_tag"><a href="#">Featured</a></div>
+                        <div class="course_price ml-auto">Price: <span>${{ course.price }}</span></div>
+                    </div>
+                    <div class="course_title"><h3><a href="#">{{ course.name }}</a></h3></div>
+                    <div class="course_text">{{ course.description }}</div>
+                    <div class="course_footer d-flex align-items-center justify-content-start">
+                        <div class="course_author_image"><img src="{{ asset('images/' ~course.teacher.image) }}" ></div>
+                        <div class="course_author_name">By <a href="#">{{ course.teacher.name }}</a></div>
+                        <div class="course_sales ml-auto"><span>{{ course.sales }}</span> Sales</div>
+                    </div>
+                    <br>
+                    {% if app.user %}
+                    <div class="text-center "><div class="button"><a href="{{ path('enroll', {id : course.id}) }} ">Enroll</a></div></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    {% block javascripts %}
+        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('styles/bootstrap4/popper.js') }}"></script>
+        <script src="{{ asset('styles/bootstrap4/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('plugins/easing/easing.js') }}"></script>
+        <script src="{{ asset('plugins/parallax-js-master/parallax.min.js') }}"></script>
+        <script src="{{ asset('js/courses.js') }}"></script>
+        {% endblock %}
+
+{% endblock %}
