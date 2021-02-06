@@ -75,7 +75,12 @@ class ElearnController extends AbstractController
             //The user isn't logged in
             $this->addFlash('error', 'You need to be signed in.');
             return $this->redirectToRoute('courses');
-        } else {
+        }
+        else if($enrollsRepository->findBy(array('user' => $this->getUser()->getId(), 'course' => $id))){
+            $this->addFlash('error', 'You are already enrolled in this course');
+            return $this->redirectToRoute('courses');
+        }
+        else {
             //The user is logged in
             if ($id and $coursesRepository->find($id)) {
                 $enroll = new Enrolls();
